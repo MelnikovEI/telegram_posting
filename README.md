@@ -24,7 +24,7 @@ python images_period_posting.py 0.5
    
    TG_CHANNEL= <- your tg channel to post images to, for example @MelSpaceImages
    
-   POST_PERIOD=4
+   POST_PERIOD=4 <- default period of posting images, hours
    
 5. Python3 should be already installed.
 
@@ -45,12 +45,12 @@ pip install -r requests.txt
     
    You may pass the argument "id" to download photos of specific launch, example:
    id=5eb87d46ffd86e000604b388
-4. "images_period_posting.py" posts images from ".images" folder to "@MelSpaceImages"
-   telegram channel every 4 hours. When all images were posted, it starts posting the same
+4. "images_period_posting.py" posts images from ".images" folder to "TG_CHANNEL"
+   telegram channel every "POST_PERIOD" hours. When all images were posted, it starts posting the same
    images again in random sequence.
    
    You may change the period of posting by passing an argument "period" in hours.
-5. "image_posting.py" posts "image.ext" from ".images" folder to "@MelSpaceImages" 
+5. "image_posting.py" posts "image.ext" from ".images" folder to "TG_CHANNEL" 
    telegram channel.
    Posts random image from ".image" folder if no arguments passed.
 ## Authors
