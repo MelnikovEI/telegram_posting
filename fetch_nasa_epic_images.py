@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from images_api import load_image
 
 
-def fetch_nasa_epic_image(token: str, date: str=''):
+def fetch_nasa_epic_image(token: str, date: str = ''):
     params = {
         'api_key': f"{token}",
     }
@@ -26,7 +26,9 @@ def fetch_nasa_epic_image(token: str, date: str=''):
 if __name__ == '__main__':
     load_dotenv()
     token = os.environ['NASA_TOKEN']
-    parser = argparse.ArgumentParser()
-    parser.add_argument("date", nargs='?', default='')
+    parser = argparse.ArgumentParser(description="downloads image of current date to '.images' folder "
+                                                 "from https://epic.gsfc.nasa.gov/. ")
+    parser.add_argument("date", nargs='?', default='', help="pass the argument (YYYY-MM-DD) to download photos "
+                                                            "from specific date")
     args = parser.parse_args()
     fetch_nasa_epic_image(token, args.date)
