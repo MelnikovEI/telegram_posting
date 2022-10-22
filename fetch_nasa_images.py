@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from images_api import load_image, get_ext
 
 
-def fetch_nasa_image(token: str, date: str=''):
+def fetch_nasa_image(token: str, date: str = ''):
     params = {
         'api_key': f"{token}",
     }
@@ -24,7 +24,8 @@ def fetch_nasa_image(token: str, date: str=''):
 if __name__ == '__main__':
     load_dotenv()
     token = os.environ['NASA_TOKEN']
-    parser = argparse.ArgumentParser()
-    parser.add_argument("date", nargs='?')
+    parser = argparse.ArgumentParser(description="downloads image of current date to '.images' folder "
+                                                 "from https://apod.nasa.gov/apod/astropix.html")
+    parser.add_argument("date", nargs='?', help="Pass the date (YYYY-MM-DD) to download photos from specific date")
     args = parser.parse_args()
     fetch_nasa_image(token, args.date)

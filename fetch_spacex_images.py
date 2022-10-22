@@ -1,8 +1,6 @@
 import argparse
-import os
 
 import requests
-from dotenv import load_dotenv
 
 from images_api import load_image, get_ext
 
@@ -20,9 +18,7 @@ def fetch_spacex_launch(id: str = ''):
 
 
 if __name__ == '__main__':
-    load_dotenv()
-    token = os.environ['NASA_TOKEN']
-    parser = argparse.ArgumentParser()
-    parser.add_argument("id", nargs='?')
+    parser = argparse.ArgumentParser(description='downloads the latest image of SpaceX launch to ".images" folder.')
+    parser.add_argument("id", nargs='?', help='id of specific launch')
     args = parser.parse_args()
     fetch_spacex_launch(args.id)
