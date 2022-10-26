@@ -30,8 +30,10 @@ python images_period_posting.py 0.5
 
    Then use `pip` (or `pip3`, if there is a conflict with Python2) to install dependencies:
 ```
-pip install -r requests.txt
+pip install -r requirements.txt
 ```
+   -> packages, listed in requirements should be successfully installed. 
+
 ### Usage
 1. "fetch_nasa_epic_images.py" downloads image of current date to ".images" folder
    from https://epic.gsfc.nasa.gov/
