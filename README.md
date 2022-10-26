@@ -16,7 +16,7 @@ python images_period_posting.py 0.5
 1. Crete a bot in telegram using https://t.me/BotFather.
 2. Create a channel in telegram.
 3. Add your bot to your channel as administrator.
-4. Create environment variables in ".env" file:
+4. Create environment variables in "your_project_folder\.env" file:
 
    NASA_TOKEN=  <- generate your "API Key" on https://api.nasa.gov/
    
@@ -30,8 +30,10 @@ python images_period_posting.py 0.5
 
    Then use `pip` (or `pip3`, if there is a conflict with Python2) to install dependencies:
 ```
-pip install -r requests.txt
+pip install -r requirements.txt
 ```
+   -> packages, listed in requirements should be successfully installed. 
+
 ### Usage
 1. "fetch_nasa_epic_images.py" downloads image of current date to ".images" folder
    from https://epic.gsfc.nasa.gov/
