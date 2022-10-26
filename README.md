@@ -46,7 +46,12 @@ pip install -r requirements.txt
 3. "fetch_spacex_images.py" downloads the latest image of SpaceX launch to .images folder
     
    You may pass the argument "id" to download photos of specific launch, example:
-   id=5eb87d46ffd86e000604b388
+```
+python fetch_spacex_images.py 5eb87d46ffd86e000604b388
+```
+   
+After scripts 1-3 execution it prints success or fail message.
+
 4. "images_period_posting.py" posts images from ".images" folder to "TG_CHANNEL"
    telegram channel every "POST_PERIOD" hours. When all images were posted, it starts posting the same
    images again in random sequence.
