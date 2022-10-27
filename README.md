@@ -5,7 +5,7 @@ The set of scripts for downloading space photos and posting it to telegram chann
 Run appropriate script
 
 ```
-python fetch_nasa_epic_images.py 2022/10/17
+python fetch_nasa_epic_images.py 2022-10-17
 python fetch_nasa_epic_images.py
 python fetch_nasa_images.py
 python fetch_spacex_images.py
