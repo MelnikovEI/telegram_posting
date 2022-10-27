@@ -9,7 +9,7 @@ from images_api import load_image, get_ext
 
 def fetch_nasa_image(token: str, date: str = ''):
     params = {
-        'api_key': f"{token}",
+        'api_key': token,
     }
     if date:
         params.update({'date': f"{date}"})

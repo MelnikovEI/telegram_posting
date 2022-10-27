@@ -10,7 +10,7 @@ from images_api import load_image
 
 def fetch_nasa_epic_image(token: str, date: str = ''):
     params = {
-        'api_key': f"{token}",
+        'api_key': token,
     }
     nasa_response = requests.get(f"https://api.nasa.gov/EPIC/api/natural/date/{date}", params=params)
     nasa_response.raise_for_status()
