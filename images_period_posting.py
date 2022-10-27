@@ -22,11 +22,14 @@ bot = telegram.Bot(token=token)
 chat_id = os.environ['TG_CHANNEL']
 
 img_list = get_img_list()
+
 for img_file in img_list:
-    bot.send_document(chat_id=chat_id, document=open(img_file, 'rb'))
+    with open(img_file, 'rb') as file_to_send:
+        bot.send_document(chat_id=chat_id, document=file_to_send)
     time.sleep(period)
 while True:
     random.shuffle(img_list)
     for img_file in img_list:
-        bot.send_document(chat_id=chat_id, document=open(img_file, 'rb'))
+        with open(img_file, 'rb') as file_to_send:
+            bot.send_document(chat_id=chat_id, document=file_to_send)
         time.sleep(period)

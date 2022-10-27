@@ -23,4 +23,5 @@ if post_file:
     img_file = os.path.join("images", post_file)
 else:
     img_file = random.choice(get_img_list())
-bot.send_document(chat_id=chat_id, document=open(img_file, 'rb'))
+with open(img_file, 'rb') as file_to_send:
+    bot.send_document(chat_id=chat_id, document=file_to_send)
