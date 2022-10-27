@@ -18,3 +18,11 @@ def get_ext(url: str) -> str:
     split_path = os.path.split(split_url.path)
     split_file_name = os.path.splitext(split_path[1])
     return split_file_name[1]
+
+
+def get_img_list() -> list:
+    img_list = []
+    for root, dirs, files in os.walk('images'):
+        for file in files:
+            img_list.append(os.path.join(root, file))
+    return img_list
