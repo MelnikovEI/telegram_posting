@@ -15,8 +15,8 @@ def fetch_spacex_launch(id: str = ''):
     if picture_links:
         for i, picture_link in enumerate(picture_links):
             if picture_link:
-                load_image(picture_link, './images', f'spacex_{i}{get_ext(picture_link)}')
-        return "No errors occurred"
+                load_image(picture_link, f'spacex_{i}{get_ext(picture_link)}')
+        return "Process finished"
     else:
         return "Process failed: Server didn't return expected information for downloading images"
 

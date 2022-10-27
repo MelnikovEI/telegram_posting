@@ -5,11 +5,11 @@ from pathlib import Path
 import requests
 
 
-def load_image(url, save_path, file_name):
-    Path(save_path).mkdir(parents=True, exist_ok=True)
-    response = requests.get(url)
+def load_image(url, file_name, params=''):
+    Path(Path.cwd() / 'images').mkdir(parents=True, exist_ok=True)
+    response = requests.get(url, params=params)
     response.raise_for_status()
-    with open(f'{save_path}/{file_name}', 'wb') as file_to_save:
+    with open(Path.cwd() / 'images' / file_name, 'wb') as file_to_save:
         file_to_save.write(response.content)
 
 

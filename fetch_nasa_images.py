@@ -18,8 +18,8 @@ def fetch_nasa_image(token: str, date: str = ''):
     img_item = nasa_response.json()
     img_link = img_item.get('hdurl')
     if img_link:
-        load_image(img_link, './images', f'nasa_apod{get_ext(img_link)}')
-        return "No errors occurred"
+        load_image(img_link, f'nasa_apod{get_ext(img_link)}')
+        return "Process finished"
     else:
         return "Process failed: Server didn't return expected information for downloading images"
 
