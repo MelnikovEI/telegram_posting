@@ -5,7 +5,7 @@ from pathlib import Path
 import requests
 
 
-def load_image(url, file_name, params=''):
+def load_image(url, file_name, params=None):
     Path(Path.cwd() / 'images').mkdir(parents=True, exist_ok=True)
     response = requests.get(url, params=params)
     response.raise_for_status()
