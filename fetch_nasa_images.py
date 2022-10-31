@@ -19,9 +19,9 @@ def fetch_nasa_image(token: str, date: str = ''):
     img_link = img_item['hdurl']
     if img_link:
         load_image(img_link, f'nasa_apod{get_ext(img_link)}')
-        return "Process finished"
+        return True
     else:
-        return "Process failed: Server didn't return expected information for downloading images"
+        return None
 
 
 if __name__ == '__main__':
@@ -31,4 +31,5 @@ if __name__ == '__main__':
                                                  "from https://apod.nasa.gov/apod/astropix.html")
     parser.add_argument("date", nargs='?', help="Pass the date (YYYY-MM-DD) to download photos from specific date")
     args = parser.parse_args()
-    print(fetch_nasa_image(token, args.date))
+    if fetch_nasa_image(token, args.date) is None:
+        print("Process failed: Server didn't return expected information for downloading images")

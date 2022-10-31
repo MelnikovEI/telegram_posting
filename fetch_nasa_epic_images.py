@@ -15,8 +15,6 @@ def fetch_nasa_epic_image(token: str, date: str = ''):
     nasa_response = requests.get(f"https://api.nasa.gov/EPIC/api/natural/date/{date}", params=params)
     nasa_response.raise_for_status()
     nasa_response_json = nasa_response.json()
-    if not nasa_response_json:
-        return "No images were delivered by this request"
     for i, img_item in enumerate(nasa_response_json):
         img_name = img_item['image']
         if img_name:
@@ -24,9 +22,9 @@ def fetch_nasa_epic_image(token: str, date: str = ''):
             str_img_date = img_date.strftime('%Y/%m/%d')
             img_link = f"https://api.nasa.gov/EPIC/archive/natural/{str_img_date}/png/{img_name}.png"
             load_image(img_link, f'nasa_epic_{i}.png', params)
-            return "Process finished"
+            return True
         else:
-            return "Process failed: Server didn't return expected information for downloading images"
+            return None
 
 
 if __name__ == '__main__':
@@ -37,4 +35,5 @@ if __name__ == '__main__':
     parser.add_argument("date", nargs='?', default='', help="pass the argument (YYYY-MM-DD) to download photos "
                                                             "from specific date")
     args = parser.parse_args()
-    print(fetch_nasa_epic_image(token, args.date))
+    if fetch_nasa_epic_image(token, args.date) is None:
+        print("Process failed: Server didn't return expected information for downloading images")

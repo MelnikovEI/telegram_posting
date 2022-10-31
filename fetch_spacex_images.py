@@ -16,13 +16,14 @@ def fetch_spacex_launch(launch_id: str = ''):
         for i, picture_link in enumerate(picture_links):
             if picture_link:
                 load_image(picture_link, f'spacex_{i}{get_ext(picture_link)}')
-        return "Process finished"
+        return True
     else:
-        return "Process failed: Server didn't return expected information for downloading images"
+        return None
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='downloads the latest image of SpaceX launch to ".images" folder.')
     parser.add_argument("id", nargs='?', help='id of specific launch')
     args = parser.parse_args()
-    print(fetch_spacex_launch(args.id))
+    if fetch_spacex_launch(args.id) is None:
+        print("Process failed: Server didn't return expected information for downloading images")
