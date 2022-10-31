@@ -11,7 +11,7 @@ def fetch_spacex_launch(launch_id: str = ''):
     else:
         space_x_response = requests.get("https://api.spacexdata.com/v5/launches/latest")
     space_x_response.raise_for_status()
-    picture_links = space_x_response.json().get('links').get('flickr').get('original')
+    picture_links = space_x_response.json()['links']['flickr']['original']
     if picture_links:
         for i, picture_link in enumerate(picture_links):
             if picture_link:
