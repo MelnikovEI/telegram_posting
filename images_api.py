@@ -20,9 +20,9 @@ def get_ext(url: str) -> str:
     return split_file_name[1]
 
 
-def get_img_list() -> list:
-    img_list = []
-    for root, dirs, files in os.walk('images'):
+def get_files_list(folder: str) -> list:
+    files_list = []
+    for root, dirs, files in os.walk(folder):
         for file in files:
-            img_list.append(os.path.join(root, file))
-    return img_list
+            files_list.append(os.path.join(root, file))
+    return files_list

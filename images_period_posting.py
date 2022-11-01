@@ -6,7 +6,7 @@ import time
 import telegram
 from dotenv import load_dotenv
 
-from images_api import get_img_list
+from images_api import get_files_list
 
 load_dotenv()
 token = os.environ['TG_TOKEN']
@@ -21,7 +21,7 @@ period = float(args.period)*3600
 bot = telegram.Bot(token=token)
 chat_id = os.environ['TG_CHANNEL']
 
-img_list = get_img_list()
+img_list = get_files_list('images')
 
 first_reconnection = True
 for img_file in img_list:

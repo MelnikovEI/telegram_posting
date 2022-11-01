@@ -5,7 +5,7 @@ import random
 import telegram
 from dotenv import load_dotenv
 
-from images_api import get_img_list
+from images_api import get_files_list
 
 load_dotenv()
 token = os.environ['TG_TOKEN']
@@ -22,6 +22,6 @@ post_file = args.post_file
 if post_file:
     img_file = os.path.join("images", post_file)
 else:
-    img_file = random.choice(get_img_list())
+    img_file = random.choice(get_files_list('images'))
 with open(img_file, 'rb') as file_to_send:
     bot.send_document(chat_id=chat_id, document=file_to_send)
