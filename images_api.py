@@ -1,8 +1,11 @@
 import os
+import time
 import urllib
 from pathlib import Path
 
 import requests
+import telegram
+from retry import retry
 
 
 def load_image(url, file_name, params=None):
@@ -26,3 +29,15 @@ def get_files_list(folder: str) -> list:
         for file in files:
             files_list.append(os.path.join(root, file))
     return files_list
+
+
+@retry(telegram.error.NetworkError, delay=1, backoff=2, max_delay=30)
+def send_file_to_channel(file_name: str, bot: telegram.Bot, chat_id: str):
+    with open(file_name, 'rb') as file_to_send:
+        bot.send_document(chat_id=chat_id, document=file_to_send)
+
+
+def send_files_to_channel(files_list, bot, chat_id, period):
+    for file_name in files_list:
+        send_file_to_channel(file_name, bot, chat_id)
+    time.sleep(period)
