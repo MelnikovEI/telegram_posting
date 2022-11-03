@@ -18,7 +18,8 @@ def fetch_nasa_epic_image(token: str, date: str = ''):
     for i, img_item in enumerate(nasa_response_info):
         img_name = img_item['image']
         if img_name:
-            img_date = datetime.datetime.strptime(img_item.get('date'), '%Y-%m-%d %H:%M:%S').date()
+            img_datetime = datetime.datetime.strptime(img_item.get('date'), '%Y-%m-%d %H:%M:%S')
+            img_date = img_datetime.date()
             str_img_date = img_date.strftime('%Y/%m/%d')
             img_link = f"https://api.nasa.gov/EPIC/archive/natural/{str_img_date}/png/{img_name}.png"
             load_image(img_link, f'nasa_epic_{i}.png', params)
