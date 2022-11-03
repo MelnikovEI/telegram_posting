@@ -9,7 +9,7 @@ from images_api import get_files_list, send_files_to_channel
 
 load_dotenv()
 token = os.environ['TG_TOKEN']
-default_period = float(os.environ['POST_PERIOD'])
+default_period = float(os.environ.get('POST_PERIOD', '4'))
 
 parser = argparse.ArgumentParser(description='Posts images from "image" folder to "@MelSpaceImages" telegram channel')
 parser.add_argument("period", nargs='?', type=float, default=default_period,

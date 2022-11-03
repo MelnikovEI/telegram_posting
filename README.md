@@ -24,7 +24,8 @@ python images_period_posting.py 0.5
    
    TG_CHANNEL= <- your tg channel to post images to, for example @MelSpaceImages
    
-   POST_PERIOD=4 <- default period of posting images, hours
+   optional:
+   POST_PERIOD= <- default period of posting images, hours. Default value = 4. 
    
 5. Python3 should be already installed.
 
