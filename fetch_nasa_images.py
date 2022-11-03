@@ -16,6 +16,8 @@ def fetch_nasa_image(token: str, date: str = ''):
     nasa_response = requests.get("https://api.nasa.gov/planetary/apod", params=params)
     nasa_response.raise_for_status()
     img_item = nasa_response.json()
+    if img_item['media_type'] != 'image':
+        return None
     img_link = img_item['hdurl']
     if img_link:
         load_image(img_link, f'nasa_apod{get_ext(img_link)}')
