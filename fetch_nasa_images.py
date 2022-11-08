@@ -22,8 +22,7 @@ def fetch_nasa_image(token: str, date: str = ''):
     if img_link:
         load_image(img_link, f'nasa_apod{get_ext(img_link)}')
         return True
-    else:
-        return None
+    return None
 
 
 if __name__ == '__main__':
