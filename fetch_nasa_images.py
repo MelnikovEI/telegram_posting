@@ -12,7 +12,7 @@ def fetch_nasa_image(token: str, date: str = ''):
         'api_key': token,
     }
     if date:
-        params.update({'date': f"{date}"})
+        params.update({'date': date})
     nasa_response = requests.get("https://api.nasa.gov/planetary/apod", params=params)
     nasa_response.raise_for_status()
     img_item = nasa_response.json()
