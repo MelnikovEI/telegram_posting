@@ -17,7 +17,7 @@ def get_nasa_epic_img_links(token: str, date: str = ''):
     return nasa_response.json()
 
 
-def fetch_nasa_epic_image(token: str, i: int, img_item):
+def fetch_nasa_epic_image(token: str, seq_number: int, img_item):
     params = {
         'api_key': token,
     }
@@ -27,7 +27,7 @@ def fetch_nasa_epic_image(token: str, i: int, img_item):
     img_date = img_datetime.date()
     str_img_date = img_date.strftime('%Y/%m/%d')
     img_link = f"https://api.nasa.gov/EPIC/archive/natural/{str_img_date}/png/{img_name}.png"
-    load_image(img_link, f'nasa_epic_{i}.png', params)
+    load_image(img_link, f'nasa_epic_{seq_number}.png', params)
 
 
 def main():
@@ -42,8 +42,8 @@ def main():
     nasa_epic_links = get_nasa_epic_img_links(token, args.date)
     if nasa_epic_links is None:
         print("Process failed: Server didn't return expected information for downloading images")
-    for i, img_item in enumerate(nasa_epic_links):
-        fetch_nasa_epic_image(token, i, img_item)
+    for seq_number, img_item in enumerate(nasa_epic_links):
+        fetch_nasa_epic_image(token, seq_number, img_item)
 
 
 if __name__ == '__main__':

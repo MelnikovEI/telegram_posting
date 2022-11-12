@@ -11,14 +11,18 @@ def get_spacex_links(launch_id: str = 'latest') -> [str]:
     return space_x_response.json()['links']['flickr']['original']
 
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser(description='downloads the latest image of SpaceX launch to ".images" folder.')
     parser.add_argument("id", nargs='?', help='id of specific launch', default='latest')
     args = parser.parse_args()
     picture_links = get_spacex_links(args.id)
     if picture_links:
-        for i, picture_link in enumerate(picture_links):
+        for seq_number, picture_link in enumerate(picture_links):
             if picture_link:
-                load_image(picture_link, f'spacex_{i}{get_ext(picture_link)}')
+                load_image(picture_link, f'spacex_{seq_number}{get_ext(picture_link)}')
     else:
         print("Process failed: Server didn't return expected images links")
+
+
+if __name__ == '__main__':
+    main()
