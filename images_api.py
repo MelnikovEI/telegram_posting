@@ -40,4 +40,4 @@ def send_file_to_channel(file_name: str, bot: telegram.Bot, chat_id: str):
 def send_files_to_channel(files_list, bot, chat_id, period):
     for file_name in files_list:
         send_file_to_channel(file_name, bot, chat_id)
-    time.sleep(period)
+        time.sleep(period)
