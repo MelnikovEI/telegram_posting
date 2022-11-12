@@ -17,10 +17,12 @@ def get_nasa_epic_img_links(token: str, date: str = ''):
     return nasa_response.json()
 
 
-def fetch_nasa_epic_image(token: str, img_item_date: str):
+def fetch_nasa_epic_image(token: str, i: int, img_item):
     params = {
         'api_key': token,
     }
+    img_name = img_item['image']
+    img_item_date = img_item.get('date')
     img_datetime = datetime.datetime.strptime(img_item_date, '%Y-%m-%d %H:%M:%S')
     img_date = img_datetime.date()
     str_img_date = img_date.strftime('%Y/%m/%d')
@@ -28,7 +30,7 @@ def fetch_nasa_epic_image(token: str, img_item_date: str):
     load_image(img_link, f'nasa_epic_{i}.png', params)
 
 
-if __name__ == '__main__':
+def main():
     load_dotenv()
     token = os.environ['NASA_TOKEN']
     parser = argparse.ArgumentParser(description="downloads image of current date to '.images' folder "
@@ -41,6 +43,8 @@ if __name__ == '__main__':
     if nasa_epic_links is None:
         print("Process failed: Server didn't return expected information for downloading images")
     for i, img_item in enumerate(nasa_epic_links):
-        img_name = img_item['image']
-        img_item_date = img_item.get('date')
-        fetch_nasa_epic_image(token, img_item_date)
+        fetch_nasa_epic_image(token, i, img_item)
+
+
+if __name__ == '__main__':
+    main()
